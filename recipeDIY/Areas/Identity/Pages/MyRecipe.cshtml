@@ -37,7 +37,7 @@
                         <div class="col-3 mr-3">
                             <!-- checkbox for different stuff -->
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="Input.IsPrivate" name="private" id="checkPrivate">
+                                <input class="form-check-input" asp-for="Input.IsPrivate" type="checkbox" value="true" name="private" id="checkPrivate">
                                 <label class="form-check-label" for="flexCheckDefault">
                                     Make Private
                                 </label>
@@ -45,7 +45,7 @@
 
                             <!-- checkbox for different stuff -->
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="Input.IsPremium" name="premium" id="checkPremium">
+                                <input class="form-check-input" asp-for="Input.IsPremium" type="checkbox" value="true" name="premium" id="checkPremium">
                                 <label class="form-check-label" for="flexCheckDefault">
                                     Make Premium
                                 </label>
@@ -54,20 +54,15 @@
 
                         <!-- Dropdown for category -->
                         <div class="form-group mr-3">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Category
-                                </button>
-                                <div class="dropdown-menu">
-                                    <!-- TODO: Use for loop instead of hard coding values -->
-                                    <a class="dropdown-item" id="breakfast" aria-valuemax="">BreakFast</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" id="lunch">Lunch</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" id="dinner">Dinner</a>
-                                </div>
-                            </div>
+                           <select name="dropdown_category">
+                               <option value="">Select a Category</option>
+                               <option value="0">Any</option>
+                               <option value="1">Breakfast</option>
+                               <option value="2">Lunch</option>
+                               <option value="3">Dinner</option>
+                           </select>
                         </div>
+                        
                         
                     </div>
 

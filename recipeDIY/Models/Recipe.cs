@@ -15,7 +15,7 @@ namespace recipeDIY.Models
         public DateTime EditDate { get; set; }
         
         public string Content { get; set; }
-        
+
         public RecipeCategory Category { get; set; }
         
         [NotMapped]
@@ -29,6 +29,7 @@ namespace recipeDIY.Models
 
         public enum RecipeCategory
         {
+            Any,
             Breakfast,
             Lunch,
             Dinner,
@@ -36,10 +37,15 @@ namespace recipeDIY.Models
         
         private readonly Dictionary<RecipeCategory, String> DisplayNameMapping = new Dictionary<RecipeCategory, string>()
         {
+            { RecipeCategory.Any, "any" },
             { RecipeCategory.Breakfast, "breakfast" },
             { RecipeCategory.Lunch, "lunch" },
             { RecipeCategory.Dinner, "dinner" }
         };
+
+        public Recipe()
+        {
+        }
 
         public Recipe(RecipeCategory category)
         {
