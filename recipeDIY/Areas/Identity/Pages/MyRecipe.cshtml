@@ -1,10 +1,9 @@
-
 @page
 @using recipeDIY.Models
 @model recipeDIY.Areas.Identity.Pages.MyRecipe
 
 @{
-    Layout = null;
+    Layout = "/Views/Shared/_Layout.cshtml";
     ViewData["Title"] = "My Recipes";
 }
 
@@ -17,6 +16,67 @@
     <div class="text-center">
         <h1 class="display-4">Welcome to your recipes page</h1>
         <p>Following are your recipes.</p>
+
+        <div class="card mb-5 DisplayRecipe">
+            <p>This is the div for seeing all of the current recipes</p>
+        </div>
+
+        <div class="card CreateRecipe">
+            <div class="mt-5 ml-5 mr-5">
+                <form method="post">
+                    <h4>Add a new recipe</h4>
+                    <hr/>
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Input.Content"></label>
+                        <input asp-for="Input.Content" class="form-control"/>
+                        <span asp-validation-for="Input.Content" class="text-danger"></span>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-3 mr-3">
+                            <!-- checkbox for different stuff -->
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Input.IsPrivate" name="private" id="checkPrivate">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Make Private
+                                </label>
+                            </div>
+
+                            <!-- checkbox for different stuff -->
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Input.IsPremium" name="premium" id="checkPremium">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Make Premium
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Dropdown for category -->
+                        <div class="form-group mr-3">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Category
+                                </button>
+                                <div class="dropdown-menu">
+                                    <!-- TODO: Use for loop instead of hard coding values -->
+                                    <a class="dropdown-item" id="breakfast" aria-valuemax="">BreakFast</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" id="lunch">Lunch</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" id="dinner">Dinner</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary">Register</button>
+                </form>
+            </div>
+        </div>
+
     </div>
 }
 else
@@ -26,8 +86,6 @@ else
         <p>You are not signed In. Please Sign in or register to see this page's content.</p>
     </div>
 }
-
-
 
 
 <!--

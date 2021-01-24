@@ -36,9 +36,9 @@ namespace recipeDIY.Models
         
         private readonly Dictionary<RecipeCategory, String> DisplayNameMapping = new Dictionary<RecipeCategory, string>()
         {
-            { RecipeCategory.Breakfast, "Chapter Leader" },
-            { RecipeCategory.Lunch, "Chapter Member" },
-            { RecipeCategory.Dinner, "Chapter Director" }
+            { RecipeCategory.Breakfast, "breakfast" },
+            { RecipeCategory.Lunch, "lunch" },
+            { RecipeCategory.Dinner, "dinner" }
         };
 
         public Recipe(RecipeCategory category)

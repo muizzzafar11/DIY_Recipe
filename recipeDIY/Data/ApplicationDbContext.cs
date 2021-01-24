@@ -4,14 +4,14 @@ using recipeDIY.Models;
 
 namespace recipeDIY.Data
 {
-    public class RecipeDiyDbContext : IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         override 
         public DbSet<ApplicationUser> Users { get; set; }
         
         public DbSet<Recipe> Recipes { get; set; }
         
-        public RecipeDiyDbContext(DbContextOptions<RecipeDiyDbContext> options)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
         }

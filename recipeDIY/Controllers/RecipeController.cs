@@ -13,8 +13,8 @@ namespace recipeDIY.Controllers
     [Route("api/[controller]/[action]/")]
     public class RecipeController : Controller
     {
-        private RecipeDiyDbContext _db;
-        public RecipeController(RecipeDiyDbContext context)
+        private ApplicationDbContext _db;
+        public RecipeController(ApplicationDbContext context)
         {
             this._db = context;
         }
