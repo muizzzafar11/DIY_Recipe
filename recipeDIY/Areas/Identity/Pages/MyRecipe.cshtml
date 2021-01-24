@@ -1,0 +1,46 @@
+
+@page
+@using recipeDIY.Models
+@model recipeDIY.Areas.Identity.Pages.MyRecipe
+
+@{
+    Layout = null;
+    ViewData["Title"] = "My Recipes";
+}
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <div class="text-center">
+        <h1 class="display-4">Welcome to your recipes page</h1>
+        <p>Following are your recipes.</p>
+    </div>
+}
+else
+{
+    <div class="text-center">
+        <h1 class="display-4">Welcome to your recipes page</h1>
+        <p>You are not signed In. Please Sign in or register to see this page's content.</p>
+    </div>
+}
+
+
+
+
+<!--
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<div>
+    
+</div>
+</body>
+</html>-->
