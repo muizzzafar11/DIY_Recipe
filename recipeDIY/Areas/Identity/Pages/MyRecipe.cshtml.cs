@@ -23,6 +23,7 @@ namespace recipeDIY.Areas.Identity.Pages
         private readonly ApplicationDbContext _db;
 
         public List<Recipe> AllUserRecipes = new List<Recipe>();
+        public bool editMode = false;
 
         private readonly List<Recipe.RecipeCategory> _categoryNames = new List<Recipe.RecipeCategory>()
         {
@@ -100,6 +101,22 @@ namespace recipeDIY.Areas.Identity.Pages
             }
             AllUserRecipes = _currentUserRecipeList();
             return Page();
+        }
+
+        public async Task<IActionResult> OnEditAsync(int id)
+        {
+            if (editMode == false)
+            {
+                editMode = !editMode;
+            }
+            else
+            {
+                
+                editMode = !editMode;
+            }
+
+            AllUserRecipes = _currentUserRecipeList();
+            return RedirectToPage("MyRecipe"); 
         }
     }
 }
