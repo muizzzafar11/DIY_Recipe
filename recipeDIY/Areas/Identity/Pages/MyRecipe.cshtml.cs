@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Logging;
 using recipeDIY.Data;
 using recipeDIY.Models;
@@ -58,6 +59,21 @@ namespace recipeDIY.Areas.Identity.Pages
                 .OrderBy(r => r.PostDate).ToList();
         }
 
+        public async Task<IActionResult> OnPostRemoveAsync(int id)  
+        {  
+            var recipe = await _db.Recipes.FindAsync(id);  
+            if (recipe == null)  
+            {  
+                return NotFound();  
+  
+            }  
+            _db.Recipes.Remove(recipe);  
+            await _db.SaveChangesAsync();  
+  
+            AllUserRecipes = _currentUserRecipeList();
+            return RedirectToPage("MyRecipe");
+        }  
+        
         public async Task<IActionResult> OnPostAsync()
         {
             if (ModelState.IsValid)

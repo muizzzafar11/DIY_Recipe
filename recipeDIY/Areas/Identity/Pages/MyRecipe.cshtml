@@ -20,14 +20,20 @@
         <div class="card mb-5 DisplayRecipe">
             <ul cl>
                 @foreach (var myRecipe in Model.AllUserRecipes) {
-                    <li class="mb-3 mt-3">
-                        <div class="card">
+                    <li class="mb-3 mt-3 mr-3">
+                        <div class="card pt-4 pb-4">
                             <h5 class="mr-auto">
                                 @myRecipe.RecipeName
                             </h5>
                             <div class="card-body mr-auto">
                                 @myRecipe.Content
                             </div>
+                            <!--<button type="button" class="btn btn-danger" value="@myRecipe.Id" name="DeleteButton">Danger</button>-->
+                            
+                            <!--<button asp-page-handler="Delete" asp-route-id="@myRecipe.Id" type="button" onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger btn-sm">Delete</button>-->
+                            <form id="remove" method="post" asp-page-handler="Remove">
+                              <button type="submit" name="id" value="@myRecipe.Id" asp-page-handler="Remove" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete?')">Delete</button>
+                            </form>
                             
                         </div>
                     </li>
@@ -40,8 +46,8 @@
         <div class="card CreateRecipe">
             <div class="mt-5 ml-5 mr-5">
                 <form method="post">
-                    <hr/>
-                    <div asp-validation-summary="All" class="text-danger"></div>
+                   <!-- <hr/>
+                    <div asp-validation-summary="All" class="text-danger"></div>-->
 
                     <div class="form-group">
                         <label asp-for="Input.RecipeName">Name of Recipe</label>
