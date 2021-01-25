@@ -321,6 +321,5 @@ C:/Users/User/Desktop/recipeDIY/recipeDIY/obj/Debug/net5.0/recipeDIY.MvcApplicat
 /Users/muizafar/Documents/Programming/recipeDIY/recipeDIY/bin/Debug/net5.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll
 /Users/muizafar/Documents/Programming/recipeDIY/recipeDIY/bin/Debug/net5.0/Npgsql.EntityFrameworkCore.PostgreSQL.Design.dll
 /Users/muizafar/Documents/Programming/recipeDIY/recipeDIY/obj/Debug/net5.0/Razor/Areas/Identity/Pages/MyRecipe.cshtml.g.cs
-/Users/muizafar/Documents/Programming/recipeDIY/recipeDIY/obj/Debug/net5.0/Razor/Views/Home/AllRecipe.cshtml.g.cs
 /Users/muizafar/Documents/Programming/recipeDIY/recipeDIY/obj/Debug/net5.0/Razor/Areas/Identity/Pages/AllRecipe.cshtml.g.cs
 /Users/muizafar/Documents/Programming/recipeDIY/recipeDIY/bin/Debug/net5.0/Microsoft.AspNetCore.Authentication.Google.dll

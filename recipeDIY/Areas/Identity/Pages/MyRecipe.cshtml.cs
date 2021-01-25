@@ -103,14 +103,5 @@ namespace recipeDIY.Areas.Identity.Pages
             return Page();
         }
         
-        public ActionResult Edit(int Id)
-        { 
-            //here, get the student from the database in the real application
-            
-            //getting a student from collection for demo purpose
-            var std = _db.Recipes.Where(s => s.Id == Id).FirstOrDefault();
-    
-            return View(std);
-        }
     }
 }

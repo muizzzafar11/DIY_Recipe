@@ -22,20 +22,18 @@
                 @foreach (var myRecipe in Model.AllUserRecipes)
                 {
                     <li class="mb-3 mt-3 mr-3">
-                        
+
                         <div class="card pt-4 pb-4">
-                            <h5 class="mr-auto">
-                                @myRecipe.RecipeName
-                            </h5>
+                            
+                                <h5 class="mr-auto">
+                                    @myRecipe.RecipeName
+                                </h5>
+                               
                             <div class="card-body mr-auto">
                                 @myRecipe.Content
                             </div>
                             <form id="remove" method="post" asp-page-handler="Remove">
                                 <button type="submit" name="id" value="@myRecipe.Id" asp-page-handler="Remove" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete?')">Delete</button>
-                            </form>
-
-                            <form id="edit" method="post" asp-page-handler="Edit">
-                                <button type="submit" name="id" value="@myRecipe.Id" asp-page-handler="Edit" class="btn btn-primary btn-sm">Edit</button>
                             </form>
 
                         </div>

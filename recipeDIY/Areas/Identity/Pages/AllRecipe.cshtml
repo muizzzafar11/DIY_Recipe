@@ -5,16 +5,24 @@
     Layout = "/Views/Shared/_Layout.cshtml";
     ViewData["Title"] = "All Recipes";
 }
+<div class="card mb-5 DisplayRecipe">
+    <ul>
+        @foreach (var allRecipe in Model.AllRecipes)
+        {
+            <li class="mb-3 mt-3 mr-3">
 
-<!DOCTYPE html>
+                <div class="card pt-4 pb-4">
+                    
+                        <h5 class="mr-auto">
+                            @allRecipe.RecipeName
+                        </h5>
+                   
+                    <div class="card-body mr-auto">
+                        @allRecipe.Content
+                    </div>
 
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-<div>
-    <p>Welcome to All Recipe Page</p>
+                </div>
+            </li>
+        }
+    </ul>
 </div>
-</body>
-</html>
