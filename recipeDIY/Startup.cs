@@ -35,13 +35,13 @@ namespace recipeDIY
                     options.Password.RequireUppercase = false;
                     options.Password.RequiredLength = 1;
                 })
-                .AddEntityFrameworkStores<RecipeDiyDbContext>();
+                .AddEntityFrameworkStores<ApplicationDbContext>();
 
             // Getting the connection string for the postgres db
-            services.AddDbContext<RecipeDiyDbContext>(options =>
+            services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("RecipeDiyDbContextConnection")));
 
-            
+
             services.AddControllersWithViews();
             services.AddRazorPages();
 
@@ -51,8 +51,10 @@ namespace recipeDIY
                 IConfigurationSection googleAuthNSection =
                     Configuration.GetSection("Authentication:Google");
 
-                options.ClientId = googleAuthNSection["ClientId"];
-                options.ClientSecret = googleAuthNSection["ClientSecret"];
+                // options.ClientId = googleAuthNSection["ClientId"];
+                // options.ClientSecret = googleAuthNSection["ClientSecret"];
+                options.ClientId = "";
+                options.ClientSecret = "";
             });
         }
 
