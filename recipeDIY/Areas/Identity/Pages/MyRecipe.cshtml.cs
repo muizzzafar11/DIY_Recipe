@@ -102,21 +102,15 @@ namespace recipeDIY.Areas.Identity.Pages
             AllUserRecipes = _currentUserRecipeList();
             return Page();
         }
-
-        public async Task<IActionResult> OnEditAsync(int id)
-        {
-            if (editMode == false)
-            {
-                editMode = !editMode;
-            }
-            else
-            {
-                
-                editMode = !editMode;
-            }
-
-            AllUserRecipes = _currentUserRecipeList();
-            return RedirectToPage("MyRecipe"); 
+        
+        public ActionResult Edit(int Id)
+        { 
+            //here, get the student from the database in the real application
+            
+            //getting a student from collection for demo purpose
+            var std = _db.Recipes.Where(s => s.Id == Id).FirstOrDefault();
+    
+            return View(std);
         }
     }
 }
