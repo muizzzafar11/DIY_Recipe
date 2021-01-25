@@ -15,20 +15,43 @@
 {
     <div class="text-center">
         <h1 class="display-4">Welcome to your recipes page</h1>
-        <p>Following are your recipes.</p>
+        <h2 class="mt-5 mb-2">Your recipes.</h2>
 
         <div class="card mb-5 DisplayRecipe">
-            <p>This is the div for seeing all of the current recipes</p>
+            <ul cl>
+                @foreach (var myRecipe in Model.AllUserRecipes) {
+                    <li class="mb-3 mt-3">
+                        <div class="card">
+                            <h5 class="mr-auto">
+                                @myRecipe.RecipeName
+                            </h5>
+                            <div class="card-body mr-auto">
+                                @myRecipe.Content
+                            </div>
+                            
+                        </div>
+                    </li>
+                }
+            </ul>
         </div>
 
+        
+        <h2 class="mt-5 mb-2">Add a new recipe</h2>
         <div class="card CreateRecipe">
             <div class="mt-5 ml-5 mr-5">
                 <form method="post">
-                    <h4>Add a new recipe</h4>
                     <hr/>
                     <div asp-validation-summary="All" class="text-danger"></div>
+
                     <div class="form-group">
-                        <label asp-for="Input.Content"></label>
+                        <label asp-for="Input.RecipeName">Name of Recipe</label>
+                        <input asp-for="Input.RecipeName" class="form-control"/>
+                        <span asp-validation-for="Input.RecipeName" class="text-danger"></span>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label asp-for="Input.Content">Instructions / Content</label>
                         <input asp-for="Input.Content" class="form-control"/>
                         <span asp-validation-for="Input.Content" class="text-danger"></span>
                     </div>
@@ -54,20 +77,17 @@
 
                         <!-- Dropdown for category -->
                         <div class="form-group mr-3">
-                           <select name="dropdown_category">
-                               <option value="">Select a Category</option>
-                               <option value="0">Any</option>
-                               <option value="1">Breakfast</option>
-                               <option value="2">Lunch</option>
-                               <option value="3">Dinner</option>
-                           </select>
+                            <select name="dropdown_category">
+                                <option value="">Select a Category</option>
+                                <option value="0">Any</option>
+                                <option value="1">Breakfast</option>
+                                <option value="2">Lunch</option>
+                                <option value="3">Dinner</option>
+                            </select>
                         </div>
-                        
-                        
                     </div>
 
-
-                    <button type="submit" class="btn btn-primary">Register</button>
+                    <button type="submit" class="btn btn-primary mb-3">Register</button>
                 </form>
             </div>
         </div>

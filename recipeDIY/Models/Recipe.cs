@@ -14,6 +14,8 @@ namespace recipeDIY.Models
         
         public DateTime EditDate { get; set; }
         
+        public string RecipeName { get; set; }
+        
         public string Content { get; set; }
 
         public RecipeCategory Category { get; set; }

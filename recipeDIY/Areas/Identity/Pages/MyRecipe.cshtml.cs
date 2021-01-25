@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using recipeDIY.Data;
 using recipeDIY.Models;
@@ -18,10 +19,11 @@ namespace recipeDIY.Areas.Identity.Pages
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
-        
         private readonly ApplicationDbContext _db;
 
-        private List<Recipe.RecipeCategory> categoryNames = new List<Recipe.RecipeCategory>()
+        public List<Recipe> AllUserRecipes = new List<Recipe>();
+
+        private readonly List<Recipe.RecipeCategory> _categoryNames = new List<Recipe.RecipeCategory>()
         {
             Recipe.RecipeCategory.Any, 
             Recipe.RecipeCategory.Breakfast, 
@@ -32,41 +34,55 @@ namespace recipeDIY.Areas.Identity.Pages
         public MyRecipe(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
-            
             ApplicationDbContext db)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            
             _db = db;
         }
 
 
-        [BindProperty] public Recipe Input { get; set; }
+        [BindProperty] 
+        public Recipe Input { get; set; }
 
         public void OnGet()
         {
+            AllUserRecipes = _currentUserRecipeList();
+        }
+
+
+        private List<Recipe> _currentUserRecipeList()
+        {
+            return _db.Recipes.Include(r => r.Author)
+                .Where(r => r.Author.Email == User.Identity.Name)
+                .OrderBy(r => r.PostDate).ToList();
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
             if (ModelState.IsValid)
             {
+                int number = 0;
+                var formData = Request.Form["dropdown_category"];
+                if (formData != "") Int32.Parse(formData);
                 var recipe = new Recipe()
                 {
                     Author = await _userManager.GetUserAsync(User),
+                    RecipeName = Input.RecipeName,
                     Content = Input.Content,
                     IsPrivate = Request.Form["private"] == "true",
                     IsPremium = Request.Form["premium"] == "true",
                     PostDate = DateTime.Now,
-                    Category = categoryNames[Int32.Parse(Request.Form["dropdown_category"])],
+                    Category = _categoryNames[number],
                 };
 
-                await _db.Recipes.AddAsync(recipe);
-                await _db.SaveChangesAsync();
-                return Page();
+                if(recipe.RecipeName != null && recipe.Content != null) 
+                {
+                    await _db.Recipes.AddAsync(recipe);
+                    await _db.SaveChangesAsync();
+                }
             }
-
+            AllUserRecipes = _currentUserRecipeList();
             return Page();
         }
     }
